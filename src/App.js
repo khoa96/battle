@@ -23,6 +23,6 @@ class App extends Component {
     );
   }
 }
-function mapStateToPerops 
+
 
 export default App;
