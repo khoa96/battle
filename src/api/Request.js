@@ -2,9 +2,8 @@ import requestHelper from "./RequestHelper";
 import errorHandler from "./errorHandler";
 
 function request(options) {
-  console.log(options);
   return requestHelper(options).catch(error => {
-    errorHandler(error);
+    console.log(error)
     return Promise.reject(error.response.data);
   });
 }

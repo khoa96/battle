@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Player from './Player';
+import { Link } from 'react-router-dom';
 
 const users = [
     {
@@ -17,11 +18,14 @@ export default class PlayerList extends Component {
 
         this.state = {
             isUser1Ready: false,
-            isUser2Ready: false
+            isUser2Ready: false,
+            username1: "",
+            username2: ""
         }
 
         this.onCheckUserReady = this.onCheckUserReady.bind(this);
-        this.onCheckUserReset = this.onCheckUserReset.bind(this)
+        this.onCheckUserReset = this.onCheckUserReset.bind(this);
+        this.onBattle = this.onBattle.bind(this)
     }
 
     onCheckUserReady(user_id) {
@@ -50,6 +54,21 @@ export default class PlayerList extends Component {
         }
     }
 
+    onBattle(user) {
+    
+        if (user.id === 1) {
+            this.setState({
+                username1: user.username
+            })
+        }
+        if (user.id === 2) {
+            this.setState({
+                username2: user.username
+            })
+        }
+    }
+    
+
     render() {
         const { isUser1Ready, isUser2Ready } = this.state;
         return (
@@ -63,12 +82,22 @@ export default class PlayerList extends Component {
                                 user={user}
                                 onCheckUserReady={this.onCheckUserReady}
                                 onCheckUserReset={this.onCheckUserReset}
+                                onBattle={this.onBattle}
                             />
                         })
                     }
                 </div>
                 {
-                    (isUser1Ready && isUser2Ready) ? <button className="btn btn--form battle-btn"> &#9812; Thách Đấu &#9812;</button> : ''
+                    (isUser1Ready && isUser2Ready) ?
+                     <Link
+                         to={{
+                             pathname: "/result",
+                             search: "?username1=" + this.state.username1 + "&username2="+ this.state.username2
+                         }}
+                         className="btn btn--form battle-btn"> 
+                         &#9812; Thách Đấu &#9812;
+                    </Link> 
+                     : ''
                 }
             </div>
         )

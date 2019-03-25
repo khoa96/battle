@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PlayerInput from '../battle/PlayerInput';
 import PlayerReview from './PlayerReview';
+import { getProfile } from '../../api/userAPI'
 
 export default class Player extends Component {
     constructor(props) {
@@ -8,19 +9,27 @@ export default class Player extends Component {
 
         this.state = {
             isShowPlayerInput: true,
-            isShowPlayerReview: false
+            isShowPlayerReview: false,
+            info: null
         }
         this.onUsernameSubmit = this.onUsernameSubmit.bind(this);
         this.onResetUser = this.onResetUser.bind(this);
+        this.onBattle = this.onBattle.bind(this)
     }
 
 
     onUsernameSubmit(id, username) {
         //call API ->get user
-        // set State 
-        this.setState({
-            isShowPlayerInput: false,
-            isShowPlayerReview: true
+        getProfile(username).then(user => {
+            const userInfo = {
+                avatar_url: user.avatar_url,
+                name: user.login
+            }
+            this.setState({
+                info: userInfo,
+                isShowPlayerInput: false,
+                isShowPlayerReview: true
+            })
         })
         this.props.onCheckUserReady(id);
     }
@@ -31,14 +40,16 @@ export default class Player extends Component {
             isShowPlayerReview: false
         })
         this.props.onCheckUserReset(id);
-        
+
     }
 
-
-
+    onBattle(user) {
+        this.props.onBattle(user)
+    }
+    
     render() {
         let { id, user } = this.props;
-        let { isShowPlayerInput, isShowPlayerReview } = this.state;
+        let { isShowPlayerInput, isShowPlayerReview, info } = this.state;
         return (
             <React.Fragment>
                 {
@@ -50,11 +61,13 @@ export default class Player extends Component {
                         /> : ""
                 }
                 {
-                    isShowPlayerReview ? 
+                    isShowPlayerReview ?
                         <PlayerReview
-                           id={id}
-                           onResetUser={this.onResetUser}
-                        /> 
+                            id={id}
+                            info={info}
+                            onResetUser={this.onResetUser}
+                            onBattle={this.onBattle}
+                        />
                         : ""
                 }
             </React.Fragment>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SelectLanguage from '../SelectLanguage';
+import SelectLanguage from '../popular/SelectLanguage';
 import Popular from './Popular';
 import { getPopularList } from '../../api/PopularAPI';
 import Loading from '../loading/Loading';
@@ -24,7 +24,6 @@ export default class PopularList extends Component {
         getPopularList('all').then(response => {
             const populars = response.items;
             if (populars.length > 0) {
-                console.log(populars)
                 this.setState({
                     populars: populars,
                     isLoading: false

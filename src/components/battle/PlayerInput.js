@@ -12,27 +12,28 @@ export default class PlayerInput extends Component {
         this.onUsernameSubmit = this.onUsernameSubmit.bind(this)
     }
 
-    onUsernameChange(event, id) {
+    onUsernameChange(event) {
         this.setState({
             username: event.target.value
         })
     }
 
     onUsernameSubmit(id) {
-        this.props.onUsernameSubmit(id, this.state.username)
+       if (this.state.username) {
+          this.props.onUsernameSubmit(id, this.state.username)
+       }
     }
     
     render() {
         let { id, label } = this.props;
         return (
-            <form className="column">
+            <div className="column">
                 <label className="header">
                     {label}
                     <input type="text"
                         id={id}
                         value={this.state.username}
                         placeholder="github username"
-                        autoComplete='off'
                         onChange={(event) => { this.onUsernameChange(event) }}
                     />
                 </label>
@@ -43,7 +44,7 @@ export default class PlayerInput extends Component {
                 >
                     Submit
             </button>
-            </form>
+            </div>
         )
     }
 }

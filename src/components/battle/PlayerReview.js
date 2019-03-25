@@ -14,15 +14,25 @@ export default class PlayerReview extends Component {
         this.props.onResetUser(this.props.id);
     }
 
+    componentDidMount = () => {
+       const user = {
+           id: this.props.id,
+           username: this.props.info.name
+       }
+       this.props.onBattle(user)
+    }
+    
+
     render() {
+        const { name, avatar_url } = this.props.info;
         return (
             <div className="colum">
                 <img
                     className="avatar"
-                    src="https://github.com/khoa96.png?size=200"
-                    alt="Nguyen Dang Khoa PTIT"
+                    src={avatar_url}
+                    alt={name}
                 />
-                <h2 className="username">@Nguyen Dang Khoa PTIT</h2>
+                <h2 className="username">@{name}</h2>
                 <button className="btn btn--form btn-reset" onClick={this.onResetUser}>Reset</button>
             </div>
         )

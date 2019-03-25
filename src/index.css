@@ -309,7 +309,7 @@ a.active {
   margin: 2rem auto;
   padding: .5rem 1rem;
   transition: all 0.3s;
-  width: 25%;
+  width: 40%;
 }
 
 .battle-player__submit {
@@ -367,4 +367,10 @@ a.active {
   width: 180px;
   height: 180px;
   border-radius: 50%;
+}
+.player-result {
+  width: 30rem;
+  border:1px solid grey;
+  background-color: #e5ebe5;
+  border-radius: 8px;
 }

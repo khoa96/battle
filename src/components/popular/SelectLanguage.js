@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import languages from '../languages';
+import languages from '../../languages'
 
 export default class SelectLanguage extends Component {
     constructor(props) {
