@@ -1,39 +1,23 @@
 import React, { Component } from 'react'
 
 export default class PlayerInput extends Component {
-    constructor(props) {
-        super(props)
-
-        this.state = {
-
-        };
-        this.changeLayout = this.changeLayout.bind(this)
-    };
-
-    changeLayout() {
-        this.props.onHide();
-    }
-
+   
     render() {
         return (
-            <form className="battle-player">
-                <label className='battle-player__header' htmlFor="username">
-                    Player One or Two
-				</label>
-                <input
-                    className="battle-player__input"
-                    id="username"
-                    placeholder="Github username"
-                    autoComplete="off"
-                    type="text"
+            <form className="column">
+                <label className="header">this.props.labe</label>
+                <input type="text"
+                    id=""
+                    value=""
+                    placeholder="github username"
+                    autoComplete='off'
                 />
                 <button
-                    className="battle-player__submit"
-                    type="button"
-                    onClick={this.changeLayout}
+                    className="btn btn--form"
+                    type="submit"
                 >
                     Submit
-                 </button>
+            </button>
             </form>
         )
     }

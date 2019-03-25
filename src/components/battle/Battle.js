@@ -4,12 +4,9 @@ import PlayerList from './PlayerList';
 export default class Battle extends Component {
 	render() {
 		return (
-			<div>
+			<React.Fragment>
 				<PlayerList/>
-				<div>
-				  <button className="battle-player__submit">Thách Đấu</button>
-				</div>
-			</div>
+			</React.Fragment>
 		)
 	}
 }
