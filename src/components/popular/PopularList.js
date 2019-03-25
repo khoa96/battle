@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import SelectLanguage from './SelectLanguage';
+import SelectLanguage from '../SelectLanguage';
 import Popular from './Popular';
-import { getPopularList } from '../api/PopularAPI';
-import Loading from '../components/loading/Loading';
+import { getPopularList } from '../../api/PopularAPI';
+import Loading from '../loading/Loading';
 
 
 export default class PopularList extends Component {
@@ -53,7 +53,7 @@ export default class PopularList extends Component {
         return (
             <React.Fragment>
                 <SelectLanguage onSelectLanguage={this.onSelectLanguage} />
-                { isLoading ? <Loading/> : ''}
+                {isLoading ? <Loading /> : ''}
                 <ul className="popular-list">
                     {
                         populars.map((popular, index) => {
