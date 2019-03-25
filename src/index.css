@@ -220,9 +220,9 @@ a.active {
   font-family: Arial;
 }
 
-.btn:hover:enabled {
+/* .btn:hover:enabled {
   background-image: linear-gradient(orangered, red);
-}
+} */
 
 .btn:active {
   transform: translateY(.5rem);
@@ -293,6 +293,10 @@ a.active {
 }
 
 .btn--form[disabled] {
+  background-color: rgb(136, 136, 135);
+}
+
+.btn--disable {
   background-color: rgb(136, 136, 135);
 }
 
